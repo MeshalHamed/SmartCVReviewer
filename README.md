@@ -193,6 +193,7 @@ The tests cover language detection, minimum text validation, RAG chunk retrieval
 ## Render Deployment
 
 This repo includes `render.yaml`, `Procfile`, and `runtime.txt`.
+It also includes `.python-version` and `PYTHON_VERSION=3.12.8` for Render, because Render's default Python version can be newer than some production dependencies expect.
 
 On Render, use these settings if creating the service manually:
 
@@ -219,5 +220,6 @@ uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
+PYTHON_VERSION=3.12.8
 GROQ_MODEL=qwen/qwen3-32b
 ```
