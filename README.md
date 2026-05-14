@@ -89,7 +89,7 @@ SmartCVReviewer/
 cd SmartCVReviewer
 python -m venv .venv
 .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 copy .env.example .env
 ```
 
@@ -184,6 +184,7 @@ Example response:
 ## Tests
 
 ```bash
+pip install -r requirements-dev.txt
 pytest
 ```
 
@@ -193,16 +194,28 @@ The tests cover language detection, minimum text validation, RAG chunk retrieval
 
 This repo includes `render.yaml`, `Procfile`, and `runtime.txt`.
 
-On Render:
+On Render, use these settings if creating the service manually:
 
 1. Create a new Web Service from the GitHub repo.
-2. Use the start command:
+2. Build command:
 
 ```bash
-uvicorn app.main:app --host 0.0.0.0 --port $PORT
+python -m pip install --upgrade pip && pip install -r requirements.txt
 ```
 
-3. Add environment variables:
+3. Start command:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers
+```
+
+4. Health check path:
+
+```text
+/api/health
+```
+
+5. Add environment variables:
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
