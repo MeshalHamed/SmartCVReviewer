@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart CV Reviewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">Arabic / English AI Reviewer</p>
+          <h1>Smart CV Reviewer</h1>
+          <p class="lede">Upload a PDF/TXT CV or paste text. The reviewer retrieves the most relevant evidence, then returns precise feedback in the same language.</p>
+        </div>
+        <div class="status-pill" id="apiStatus">Checking API...</div>
+      </section>
+
+      <section class="workspace">
+        <form id="reviewForm" class="panel">
+          <div class="field-group">
+            <label for="cvFile">Upload CV</label>
+            <div class="drop-zone" id="dropZone">
+              <input id="cvFile" name="file" type="file" accept=".pdf,.txt,application/pdf,text/plain" />
+              <div>
+                <strong id="fileLabel">Choose PDF or TXT</strong>
+                <span id="fileHint">Max 6 MB. Remove it to enable text input.</span>
+              </div>
+              <button class="ghost hidden" id="removeFile" type="button">Remove</button>
+            </div>
+          </div>
+
+          <div class="divider"><span>or</span></div>
+
+          <div class="field-group">
+            <label for="cvText">Paste CV Text</label>
+            <textarea id="cvText" name="cv_text" rows="12" placeholder="Paste your CV here... / الصق السيرة الذاتية هنا..."></textarea>
+          </div>
+
+          <button class="primary" id="submitBtn" type="submit">
+            <span>Review CV</span>
+            <span class="spark"></span>
+          </button>
+          <p class="form-note" id="formNote">One input method can be active at a time.</p>
+        </form>
+
+        <section class="results" id="results" aria-live="polite">
+          <div class="empty-state">
+            <span class="orb"></span>
+            <h2>Ready when your CV is.</h2>
+            <p>Your review will appear here with strengths, gaps, improvements, and suitable job roles.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

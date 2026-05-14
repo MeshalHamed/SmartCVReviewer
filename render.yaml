@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: smart-cv-reviewer
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: qwen/qwen3-32b
+      - key: APP_NAME
+        value: Smart CV Reviewer
+      - key: MAX_UPLOAD_MB
+        value: "6"
